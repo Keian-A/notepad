@@ -5,19 +5,19 @@ const noteSlice = createSlice({
     initialState: [],
     reducers: {
         add(state, action) {
-            let temp = true;
-            // Checks to see if note being added is unique or not, if not doesn't add it
+            // Finds most available id for newest not object added to state
+            let releventId = 0;
             for (let ii = 0; ii < state.length; ii++) {
-                if (state[ii].item.name === action.payload.name) {
-                    temp = false;
+                if (releventId === ii) {
+                    releventId++;
+                } else {
+                    break;
                 }
             }
-            if (temp) {
-                state.push({ item: action.payload, count: 1 });
-            }
+            state.push({ note: action.payload, id: releventId });
         },
         remove(state, action) {
-            return state.filter(element => element.item.name !== action.payload.name);
+            return state.filter(element => element.id !== action.payload);
         },
     }
 });

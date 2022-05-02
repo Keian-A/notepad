@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { remove, add } from '../store/notes.js';
+import RenderNotes from './RenderNotes.jsx';
 
 function NewNote() {
 
@@ -9,6 +10,7 @@ function NewNote() {
     const [currentNote, setCurrentNote] = useState('');
 
     const handleAdd = () => {
+        console.log(currentNote);
         dispatch(add(currentNote));
     }
 
@@ -26,7 +28,7 @@ function NewNote() {
             <label>New note:</label>
             <input onChange={handleNoteChange} id="note" type="text" />
             <input type="submit" value="Submit" onClick={handleAdd} />
-            {console.log(note)}
+            <RenderNotes note={note} handleRemove={handleRemove} />
         </div>
     );
 }

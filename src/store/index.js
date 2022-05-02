@@ -6,7 +6,7 @@ import { combineReducers } from 'redux';
 import noteSlice from './notes.js';
 
 const reducers = combineReducers({
-    notes: noteSlice.reducer,
+    note: noteSlice.reducer,
 });
 
 const store = configureStore({ reducer: reducers })
