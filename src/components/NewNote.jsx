@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { remove, add } from '../store/notes.js';
 import RenderNotes from './RenderNotes.jsx';
@@ -10,8 +10,25 @@ function NewNote() {
     let note = useSelector(state => state.note);
     const [currentNote, setCurrentNote] = useState('');
 
+    useEffect(() => {
+        const localStorageGet = () => {
+            let items = JSON.parse(localStorage.getItem('noteArr'));
+            for (let ii = 0; ii < items.length; ii++) {
+                dispatch(add(items[ii].note));
+            }
+        }
+        localStorageGet();
+    }, [dispatch])
+
+    useEffect(() => {
+        const localStorageSet = () => {
+            let items = JSON.stringify(note);
+            localStorage.setItem('noteArr', items);
+        }
+        localStorageSet();
+    }, [note])
+
     const handleAdd = () => {
-        console.log(currentNote);
         dispatch(add(currentNote));
     }
 
