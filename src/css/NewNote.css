@@ -1,0 +1,9 @@
+.card {
+    max-width: 500px !important;
+    min-width: 300px !important;
+    margin: 1rem;
+}
+
+#all-cards {
+    display: flex;
+}

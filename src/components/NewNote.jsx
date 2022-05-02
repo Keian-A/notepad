@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { remove, add } from '../store/notes.js';
 import RenderNotes from './RenderNotes.jsx';
+import '../css/NewNote.css';
 
 function NewNote() {
 
