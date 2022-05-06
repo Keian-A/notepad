@@ -13,8 +13,10 @@ function NewNote() {
     useEffect(() => {
         const localStorageGet = () => {
             let items = JSON.parse(localStorage.getItem('noteArr'));
-            for (let ii = 0; ii < items.length; ii++) {
-                dispatch(add(items[ii].note));
+            if (items) {
+                for (let ii = 0; ii < items.length; ii++) {
+                    dispatch(add(items[ii].note));
+                }
             }
         }
         localStorageGet();
